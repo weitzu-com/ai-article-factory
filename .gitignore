@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated article output (this repo ships the factory, not the articles)
+/articles/
+**/assets/img/*.png
+**/assets/img/*.jpg
+!**/assets/img/.gitkeep
+*-final.docx

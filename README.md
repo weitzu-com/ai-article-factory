@@ -1,0 +1,100 @@
+# AI Article Factory 🏭✍️
+
+A **Claude Code Skill** that turns any material, topic, or product into **publish-ready, illustrated, SEO + GEO-optimized articles** — automated end-to-end, in **Markdown + Word**, with **multi-platform copy** (website / LinkedIn / X).
+
+> **The human only reviews, confirms, and publishes.** The AI does the rest: filing, topic selection, scheduling, drafting, figures, fact-checking, optimization, export, and multi-platform repurposing.
+
+一句话：**任意素材 → 自动建档、选题、排期、创作、配图、校准、生成多平台文案。人只负责审核、确认、发布。**
+
+---
+
+## Why (first principles)
+
+Writing a good article is actually a **standardizable assembly line**: each station has a defined input, output, and pass/fail gate — so it can be automated, while humans guard the gates.
+
+- **Found + trusted** — content exists to give the most complete, credible, machine-parseable answer to one intent.
+- **SEO + GEO together** — rank in Google *and* get cited by ChatGPT / Perplexity / AI Overviews. Shared optimum: every heading is an independently answerable question.
+- **Evidence before sentences** — every claim is backed by a primary source before it's written.
+- **Single-piece flow** — one article = one self-contained folder.
+- **PDCA** — Plan (topic/schedule) → Do (create) → Check (QA) → Act (publish + monitor + refresh). Each loop feeds the next.
+
+## What it does — the 11-stage pipeline
+
+```
+P0 product profile → P1 topic → P2 evidence ledger★ → P3 angle → P4 outline → P5 draft
+→ P6 visuals → P7 SEO/GEO → P8 QA★ → P9 export MD+Word → P10 publish → P11 monitor
+```
+★ = hard gate (human confirm / auto-block).
+
+## Install
+
+This is a Claude Code skill. Drop it into your skills directory:
+
+```bash
+# Option A: clone into your project/user skills folder
+git clone https://github.com/weitzu-com/ai-article-factory \
+  ~/.claude/skills/ai-article-factory
+
+# Option B: via the skills CLI (Claude Code & others)
+npx -y skills@latest add weitzu-com/ai-article-factory
+```
+
+### Dependencies
+```bash
+brew install pandoc                              # Word (.docx) export
+npm install -g @mermaid-js/mermaid-cli           # flow / structure figures
+python3 -m pip install matplotlib                # data figures
+```
+
+### Recommended companion skills (this skill orchestrates them)
+```bash
+npx -y skills@latest add aaron-he-zhu/seo-geo-claude-skills
+npx -y skills@latest add inhouseseo/superseo-skills
+```
+
+## Use
+
+In Claude Code, just say what you want — the skill auto-triggers:
+
+```
+"Write an article about <product> for the website and LinkedIn."
+"Scan ~/Downloads/research/ and give me 3 topic ideas."
+"用 02_共享素材/ 里的资料写一篇面向采购经理的选型指南。"
+```
+
+Or scaffold + run a single article:
+```bash
+bash scripts/new-article.sh my-topic-slug                 # create articles/<date-slug>/
+bash scripts/render-figures.sh articles/<date-slug>/      # render figures → assets/img/
+bash scripts/export.sh articles/<date-slug>/ my-topic-slug # MD → .docx (images embedded)
+```
+
+## What you get per article
+```
+articles/<YYYY-MM-DD-slug>/
+├── 00-产品档案.md  01-选题brief.md  02-证据台账.md★  03-主题角度.md  04-大纲.md  05-初稿.md
+├── assets/{src,img}/  + 图清单.md
+├── 06-审核报告.md★
+├── <slug>-final.md (illustrated)  ·  <slug>-final.docx (Word)
+├── <slug>-wp.md (website)  ·  <slug>-linkedin.md  ·  <slug>-x.md
+```
+
+## Repo layout
+```
+ai-article-factory/
+├── SKILL.md            # the skill (orchestration instructions + frontmatter)
+├── scripts/            # figlib.py · render-figures.sh · export.sh · new-article.sh
+├── templates/          # article project template + brand reference.docx
+└── references/         # on-demand detail: pipeline, materials, visuals, multi-platform, publishing, skills+MCP, PDCA
+```
+
+## Skills · MCP · tools used
+- **Worker skills**: keyword-research, content-gap-analysis, expert-interview, write-content, geo-content-optimizer, schema-markup-generator, content-quality-auditor (CORE-EEAT), rank-tracker … (from the companion packs).
+- **MCP**: filesystem (materials from any path), web fetch/search, Google Drive, Notion, WordPress.
+- **Tools**: pandoc (Word), mermaid-cli + matplotlib (figures).
+- **Claude Code**: `/schedule` & `/loop` (automation), hooks (evidence gate), subagents (independent QA).
+
+See [`references/`](references/) for full detail.
+
+## License
+[Apache-2.0](LICENSE). Built to complement the SEO/GEO Claude skills ecosystem.
