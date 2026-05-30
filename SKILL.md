@@ -1,7 +1,7 @@
 ---
 name: ai-article-factory
 description: 'Use when the user wants to turn any material, topic, or product into publish-ready, illustrated articles — automated end-to-end (auto file → topic → schedule → draft → visuals → fact-check → multi-platform copy → export MD+Word), with a human only reviewing, confirming, and publishing. 文章自动化生产/自动写文章/图文并茂/SEO GEO优化/一稿多投/任意素材变文章'
-version: "1.0.0"
+version: "1.1.0"
 license: Apache-2.0
 homepage: "https://github.com/weitzu-com/ai-article-factory"
 when_to_use: "Use when the user says 写文章 / 自动写作 / 把素材变成文章 / article factory / produce content, or wants automated topic selection, scheduling, drafting, fact-checking, figures (图文并茂), and multi-platform copy (website / LinkedIn / X) where the human only reviews, confirms, and publishes."
@@ -26,9 +26,29 @@ You are the **editor-in-chief of an automated content production line**. Turn an
 - **AI (you)**: file, select topic, schedule, find evidence, draft, make figures, optimize, fact-check, export, generate multi-platform copy, organize/archive, monitor.
 - **Human**: 3 gates only — **review** (topic card / audit report / platform copy), **confirm** (release at gates; adjudicate disputed evidence), **publish** (push to website/LinkedIn/X).
 
+## Default path (上善若水 — the newbie default)
+Optimize for the **shortest flow to a finished article**. Default to full-auto with only **2 light confirm points**; never make the user fill forms or touch the CLI.
+```
+one sentence  /  a materials folder
+  → auto-file + blueprint (intent + angle + H2 questions)   — confirm ① (optional; silence = continue)
+  → draft (answer-first; every fact sourced [C#])
+  → self-check + figures (placeholder cover, never blocks) + SEO/GEO + export
+                                                            — confirm ② (glance: approve or tweak)
+  → 文章.md  +  文章.docx   (ready to publish)
+```
+Defaults are **water, not walls**:
+- **Infer the profile** from the input; show it back in one line; silence = proceed. Never ask the user to fill `00-产品档案.md`.
+- **Cover = placeholder** until the user supplies one; never block on it.
+- **Website version only** by default; produce LinkedIn/X **on request**.
+- **Gates = confirm points, not blockers** for newbies: surface risk ("2 stats lack a source — soften?") and let them choose. Keep exactly two real checkpoints: evidence sourced (P2) and QA pass (P8).
+- Speak the **user's language**, in plain words (say "I'll source each number", not "Claim Ledger / CORE-EEAT / GEO≥8"). Jargon stays in `references/`.
+- Reveal full 11-stage control, multi-platform, scheduling, monitoring **only when asked** (无用之用 — keep the surface empty until needed).
+
+Run the full pipeline below when the user wants precision/control; otherwise stay on this path.
+
 ## Setup (once)
-- Tools: `pandoc` (Word), `@mermaid-js/mermaid-cli` (flow/structure figures), `python3 + matplotlib` (data figures). See `references/skills-and-mcp.md`.
-- Companion worker-skills (recommended): install `aaron-he-zhu/seo-geo-claude-skills` + `inhouseseo/superseo-skills`. This skill **orchestrates** them.
+- Tools (layered — a Markdown draft needs none): `pandoc` (Word), `@mermaid-js/mermaid-cli` (flow/structure figures), `python3 + matplotlib + numpy` (data figures). Each degrades gracefully if absent. See `references/skills-and-mcp.md`.
+- Companion worker-skills: `aaron-he-zhu/seo-geo-claude-skills` + `inhouseseo/superseo-skills`. This skill **orchestrates** them. **If absent**, drafting, figures, and export still run standalone; the SEO/GEO research, schema, and CORE-EEAT scoring degrade to best-effort — install the packs for full quality.
 - MCP servers as needed (filesystem for materials, web fetch/search, Google Drive, Notion, WordPress). See `references/skills-and-mcp.md`.
 
 ## The 11-stage pipeline (P0–P11)
@@ -44,7 +64,7 @@ P0 product profile → P1 topic → P2 evidence ledger★ → P3 angle → P4 ou
    ```bash
    bash scripts/new-article.sh <slug>        # copies templates/article/ → articles/<date-slug>/
    ```
-3. Fill `00-产品档案.md` (product / ICP / goal / differentiation / evidence sources / **target-domain** / **target-platforms**). This makes the run work for ANY topic/product. Pass Gate 0, then proceed.
+3. **Infer** the profile from the user's sentence/materials and write `00-产品档案.md` yourself (ICP, intent, angle, evidence sources, `target-domain`/`target-platforms` → default website-only). Echo it back in one line; proceed unless the user changes it. **Never block the user on filling it.** This keeps the run working for ANY topic/product with zero forms.
 
 ### Materials → auto-filing (P0–P2)
 Materials come from two places: (a) the in-repo/shared library, and (b) **any path the user points to, up to the whole computer** (via filesystem MCP / file search; needs OS file access). For each item: discover → extract (PDF/Office via pandoc, URL via web fetch, image via vision) → register into `02-证据台账.md` with primary source + locator → grade (primary ✅ / disputed / unverified; never competitor blogs as authority). Detail: `references/materials-system.md`.

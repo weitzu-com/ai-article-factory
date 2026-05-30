@@ -32,6 +32,24 @@ This skill itself bundles the two capabilities those packs lack: **visuals** (`s
 
 > New users can ask Claude Code to configure an MCP for them, e.g. "set up a filesystem MCP that can read `/some/path`."
 
+### Minimal filesystem MCP (reads materials from a path)
+Add to your project `.mcp.json` (or user `~/.claude.json`):
+```json
+{
+  "mcpServers": {
+    "materials": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/you/Documents", "/Users/you/Downloads"]
+    }
+  }
+}
+```
+List the folders you want readable as extra args. **macOS:** also grant the host app (Terminal / iTerm / VS Code / Claude) **Full Disk Access** in System Settings → Privacy & Security, then restart it — otherwise reads fail with `Operation not permitted`. Without any MCP, the built-in file tools still read paths the app can already access.
+
+### Required vs optional
+- **This skill alone**: scaffold + draft + figures (mermaid/matplotlib) + Word export work standalone.
+- **Companion packs (recommended for full quality)**: keyword/SERP research, schema, and CORE-EEAT scoring. If absent, those stages run best-effort from the model's own reasoning.
+
 ## Local tools
 | Tool | For | Install |
 |---|---|---|
