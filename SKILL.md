@@ -1,7 +1,7 @@
 ---
 name: ai-article-factory
 description: 'Use when the user wants to turn any material, topic, or product into publish-ready, illustrated articles — automated end-to-end (auto file → topic → schedule → draft → visuals → fact-check → multi-platform copy → export MD+Word), with a human only reviewing, confirming, and publishing. 文章自动化生产/自动写文章/图文并茂/SEO GEO优化/一稿多投/任意素材变文章'
-version: "1.1.0"
+version: "2.0.0"
 license: Apache-2.0
 homepage: "https://github.com/weitzu-com/ai-article-factory"
 when_to_use: "Use when the user says 写文章 / 自动写作 / 把素材变成文章 / article factory / produce content, or wants automated topic selection, scheduling, drafting, fact-checking, figures (图文并茂), and multi-platform copy (website / LinkedIn / X) where the human only reviews, confirms, and publishes."
@@ -46,9 +46,23 @@ Defaults are **water, not walls**:
 
 Run the full pipeline below when the user wants precision/control; otherwise stay on this path.
 
+## Self-contained suite
+This skill **bundles six first-party worker skills** under `skills/` that cover the whole core pipeline — **no external pack required**:
+
+| Stage | Bundled worker skill | Owns |
+|---|---|---|
+| P1–P2 | **`article-research`** | topic brief, intent/SERP, content gap, evidence ledger |
+| P5 | **`article-write`** | answer-first draft, anti-AI-slop, evidence tagging |
+| P6 | **`article-visuals`** | Mermaid + matplotlib figures + cover (图文并茂) |
+| P7 | **`article-optimize`** | SEO + GEO + JSON-LD schema + internal links |
+| P8 | **`article-qa`** | CORE-EEAT scoring + fact reconciliation (ship gate) |
+| P9 | **`article-export`** | MD → Word (.docx), images embedded |
+
+As orchestrator you invoke these in order. P0 profile, P3 angle, P4 outline, P10 publish, P11 monitor are driven by this orchestrator + the references.
+
 ## Setup (once)
-- Tools (layered — a Markdown draft needs none): `pandoc` (Word), `@mermaid-js/mermaid-cli` (flow/structure figures), `python3 + matplotlib + numpy` (data figures). Each degrades gracefully if absent. See `references/skills-and-mcp.md`.
-- Companion worker-skills: `aaron-he-zhu/seo-geo-claude-skills` + `inhouseseo/superseo-skills`. This skill **orchestrates** them. **If absent**, drafting, figures, and export still run standalone; the SEO/GEO research, schema, and CORE-EEAT scoring degrade to best-effort — install the packs for full quality.
+- Tools (layered — a Markdown draft needs none): `pandoc` (Word), `@mermaid-js/mermaid-cli` (figures), `python3 + matplotlib + numpy` (data figures). Each degrades gracefully if absent.
+- **Optional enhancement** (not required): installing `aaron-he-zhu/seo-geo-claude-skills` + `inhouseseo/superseo-skills` adds deeper research data and scoring. The suite runs fully standalone without them.
 - MCP servers as needed (filesystem for materials, web fetch/search, Google Drive, Notion, WordPress). See `references/skills-and-mcp.md`.
 
 ## The 11-stage pipeline (P0–P11)
@@ -77,7 +91,7 @@ bash scripts/render-figures.sh articles/<slug>/      # → assets/img/*.png
 Prefer Markdown tables over images for tabular data (AI-extractable). Detail/SEO+GEO image rules: `references/visuals-spec.md`.
 
 ### QA (P8) — hard gate
-Run an **independent reviewer subagent** (stance: find faults) using `content-quality-auditor` (CORE-EEAT 80-item) + `eeat-audit`; reconcile every claim against the ledger. Not "ship" → bounce to P5. Output `06-审核报告.md`.
+Run an **independent reviewer subagent** (stance: find faults) using the bundled **`article-qa`** skill (CORE-EEAT scoring + five-axis review, factual accuracy = veto); reconcile every claim against the ledger. Not "ship" → bounce to P5. Output `06-审核报告.md`.
 
 ### Export (P9) — MD + Word
 ```bash

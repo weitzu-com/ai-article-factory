@@ -1,0 +1,21 @@
+AI Article Factory
+Copyright 2026 weitzu-com
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The first-party worker skills under `skills/` (article-research, article-write,
+article-optimize, article-qa) are ORIGINAL, concise reimplementations whose
+methodology was distilled from the following Apache-2.0 skill packs. They are
+not verbatim copies; credit and thanks to the original authors:
+
+  - aaron-he-zhu/seo-geo-claude-skills  (Apache-2.0)
+    https://github.com/aaron-he-zhu/seo-geo-claude-skills
+    SEO/GEO skills; CORE-EEAT + CITE frameworks.
+
+  - inhouseseo/superseo-skills  (Apache-2.0)
+    https://github.com/inhouseseo/superseo-skills
+    SEO skills; anti-AI-slop ruleset; methodology credited by that project to
+    Koray Tuğberk, Kyle Roof, and Lily Ray.
+
+Installing those original packs alongside this suite is optional and enhances
+research depth and scoring; this suite runs the core pipeline standalone.
