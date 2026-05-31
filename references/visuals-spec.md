@@ -20,7 +20,7 @@ bash scripts/render-figures.sh articles/<slug>/   # mermaid + matplotlib → ass
 `figlib.py`: brand palette (`palette.json`) + macOS CJK fonts registered (Chinese won't render as boxes) + `save()` / `bar_compare()` helpers. `render-figures.sh` adds the scripts dir to PYTHONPATH and writes outputs to the article's `assets/img/`.
 
 ## Naming & embedding (image SEO/GEO)
-- Filename: **English kebab-case with keywords** (e.g. `rtp-vs-carbon-steel-10yr-tco.png`, not `image1.png`).
+- Filename: **English kebab-case with keywords** (e.g. `feature-vs-competitor-tco.png`, not `image1.png`).
 - Embed: `![keyworded alt](assets/img/x.png)` + caption (with source `[C#]`).
 - Each figure passes: descriptive filename · keyworded alt · caption · compressed (<200KB chart / <400KB cover) · **data figure has an equivalent sentence/table nearby** · key numbers also in prose pointing to the source.
 - Cover prompt (`assets/src/cover-prompt.md`): subject + style (brand colors) + 16:9 with negative space for a title + negative prompt.

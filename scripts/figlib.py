@@ -9,8 +9,8 @@
 render-figures.sh 会自动把本目录加入 PYTHONPATH，并把 FIG_OUT 指到该文章的
 assets/img/。脱离脚本单独跑时，默认输出到 ./ 或环境变量 FIG_OUT。
 
-品牌色板从 00_标准与模板/品牌/palette.json 读取（若存在），否则用内置默认。
-换公司 VI 只改那一个 json，无需改每篇文章。
+品牌色板从同目录 palette.json 读取（若存在），否则用内置中性默认色。
+换品牌 VI 只改 palette.json，无需改每篇文章。
 """
 from pathlib import Path
 import json
@@ -42,12 +42,12 @@ plt.rcParams.update({
     "figure.dpi": 110,
 })
 
-# --- Brand palette (override via palette.json next to this script) ---
-_DEFAULT = {"blue": "#0E4D92", "teal": "#0FA3A3", "gold": "#D4A02A",
-            "red": "#B7321C", "grey": "#4A4A4A"}
+# --- Brand palette: neutral example defaults; override via palette.json next to this script ---
+_DEFAULT = {"blue": "#1F6FEB", "teal": "#2AA198", "gold": "#D29922",
+            "red": "#CF222E", "grey": "#57606A"}
 _here = Path(__file__).resolve().parent
 _pal_path = next((p for p in (_here / "palette.json",
-                              _here.parent / "品牌" / "palette.json") if p.exists()), None)
+                              _here.parent / "brand" / "palette.json") if p.exists()), None)
 try:
     if _pal_path:
         _DEFAULT.update(json.loads(_pal_path.read_text(encoding="utf-8")))
@@ -72,6 +72,7 @@ def _out_dir() -> Path:
 def save(figure, name: str):
     """保存到 FIG_OUT（render-figures.sh 已指向该文章 assets/img/）。"""
     out = _out_dir() / name
+    out.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(out, dpi=144, bbox_inches="tight", facecolor="white")
     plt.close(figure)
     print(f"  wrote {out}")

@@ -5,9 +5,13 @@
 set -euo pipefail
 SLUG="${1:?usage: new-article.sh <slug> [date]   (slug = english-kebab-case)}"
 DATE="${2:-$(date +%F)}"
-# enforce the naming rule (no spaces / full-width / uppercase): keeps image SEO & URLs clean
-if ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
+# enforce slug naming — whole-string match (rejects spaces/uppercase/unicode/newlines/injection)
+if [[ ! "$SLUG" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
   echo "❌ invalid slug: '$SLUG' — use english-kebab-case, e.g. ai-support-chatbot-roi"; exit 1
+fi
+# enforce date YYYY-MM-DD (prevents path traversal via the date argument)
+if [[ ! "$DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+  echo "❌ invalid date: '$DATE' — use YYYY-MM-DD"; exit 1
 fi
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # skill repo root
 # Articles land in your CURRENT working directory (override with ARTICLE_OUTPUT_DIR).

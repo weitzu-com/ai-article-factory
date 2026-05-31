@@ -123,4 +123,4 @@ Score 1 point each (cap 10):
 - `references/schema-templates.md` — copy-ready JSON-LD for `Article`, `TechArticle`, `FAQPage`, `HowTo`, with shared rules and a combined-array example.
 
 ---
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+*Distilled from the SEO/GEO Claude skill packs (aaron-he-zhu/seo-geo-claude-skills, inhouseseo/superseo-skills, Apache-2.0); original concise reimplementation.*

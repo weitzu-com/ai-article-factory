@@ -128,5 +128,8 @@ ai-article-factory/
 
 See [`references/`](references/) and each `skills/*/SKILL.md` for full detail.
 
+## Security
+`render-figures.sh` executes the `*.py` / `*.mmd` figure sources under an article's `assets/src/`, and `export.sh` runs pandoc on its Markdown. These are *your* files by design — **don't run the scripts on an untrusted article folder** you didn't create. Inputs are otherwise hardened: the slug and date args are strictly validated (no spaces/unicode/newlines/path-traversal), and scripts quote all variables.
+
 ## License
 [Apache-2.0](LICENSE) · see [NOTICE](NOTICE) for attribution. The worker skills are original, concise reimplementations distilled from the Apache-2.0 SEO/GEO Claude skill packs.

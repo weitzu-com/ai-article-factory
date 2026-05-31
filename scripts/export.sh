@@ -10,9 +10,9 @@ set -euo pipefail
 DIR="${1:-.}"
 DIR="$(cd "$DIR" && pwd)"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # skill repo root
-# brand template: skill layout (templates/) or project layout (品牌/)
+# brand template: skill layout (templates/) or project layout (brand/)
 REF=""
-for c in "$ROOT/templates/reference.docx" "$ROOT/品牌/reference.docx"; do
+for c in "$ROOT/templates/reference.docx" "$ROOT/brand/reference.docx"; do
   [ -f "$c" ] && { REF="$c"; break; }
 done
 
