@@ -10,7 +10,7 @@ A **Claude Code Skill** that turns any material, topic, or product into **publis
 
 ---
 
-> 📖 **New here? Read the [User Manual (用户使用手册)](docs/用户使用手册.md)** — install, your first article in 5 minutes, what you (the human) do, a real worked example, and troubleshooting.
+> 📖 **New here? Read the User Guide — [English](docs/USER-GUIDE.md) · [中文](docs/用户使用手册.md).** Install, your first article in 5 minutes, what you (the human) do, a real worked example, and troubleshooting.
 
 ## Why (first principles)
 
