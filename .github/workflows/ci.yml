@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+# Opt into Node 24 now (GH forces it 2026-06-16); silences the Node 20 deprecation warning.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   test:
     runs-on: ubuntu-latest
