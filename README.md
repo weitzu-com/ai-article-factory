@@ -110,12 +110,15 @@ articles/<YYYY-MM-DD-slug>/
 ```
 ai-article-factory/
 ├── SKILL.md            # orchestrator (drives the pipeline + the worker skills)
+├── AGENTS.md           # ← agent guide (single source of truth for any AI agent)
+├── CLAUDE.md · GEMINI.md · GROK.md   # thin per-tool pointers to AGENTS.md
 ├── skills/             # ← bundled first-party worker skills (self-contained suite)
 │   ├── article-research/   article-write/   article-visuals/
 │   └── article-optimize/   article-qa/      article-export/
 ├── scripts/            # figlib.py · render-figures.sh · export.sh · new-article.sh
 ├── templates/          # article project template + brand reference.docx
 ├── references/         # on-demand detail: pipeline, materials, visuals, multi-platform, publishing, skills+MCP, PDCA
+├── tests/              # harness.sh — 23-check stress + regression suite
 ├── LICENSE · NOTICE    # Apache-2.0 + attribution
 ```
 
