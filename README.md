@@ -1,5 +1,7 @@
 # AI Article Factory 🏭✍️
 
+[![CI](https://github.com/weitzu-com/ai-article-factory/actions/workflows/ci.yml/badge.svg)](https://github.com/weitzu-com/ai-article-factory/actions/workflows/ci.yml)
+
 A **Claude Code Skill** that turns any material, topic, or product into **publish-ready, illustrated, SEO + GEO-optimized articles** — automated end-to-end, in **Markdown + Word**, with **multi-platform copy** (website / LinkedIn / X).
 
 > **The human only reviews, confirms, and publishes.** The AI does the rest: filing, topic selection, scheduling, drafting, figures, fact-checking, optimization, export, and multi-platform repurposing.

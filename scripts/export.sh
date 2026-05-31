@@ -20,7 +20,7 @@ done
 if [ "${2:-}" != "" ] && [ -f "$DIR/$2-final.md" ]; then
   MD="$DIR/$2-final.md"
 else
-  MD="$(ls "$DIR"/*-final.md 2>/dev/null | head -1 || true)"
+  MD="$(find "$DIR" -maxdepth 1 -name '*-final.md' 2>/dev/null | sort | head -1 || true)"
 fi
 [ -z "${MD:-}" ] && { echo "❌ no *-final.md found — finish P7 to produce the final draft first"; exit 1; }
 
