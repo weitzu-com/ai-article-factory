@@ -44,4 +44,4 @@ Make figures that serve three readers at once: humans (understanding), search en
 - **Every data figure has an equivalent sentence/table nearby** (AI reads text; the figure corroborates).
 - Don't rely on color alone (color-blind safe); in-figure font ≥ body.
 
-Full detail: `references/visuals-spec.md` (repo root).
+Full detail: `../../references/visuals-spec.md` (the repo-root `references/` folder).

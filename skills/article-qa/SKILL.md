@@ -166,6 +166,4 @@ Reconciled: X/Y claims. Spot-checked locators: [which, confirmed?]
 
 ---
 
-*Part of [ai-article-factory](https://github.com/weitzu-com/ai-article-factory). Apache-2.0.*
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+*Distilled from the `content-quality-auditor` (CORE-EEAT) and `eeat-audit` skill packs (aaron-he-zhu/seo-geo-claude-skills, inhouseseo/superseo-skills, Apache-2.0); original concise reimplementation. Part of [ai-article-factory](https://github.com/weitzu-com/ai-article-factory).*

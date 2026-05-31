@@ -80,7 +80,3 @@ If the topic can affect a reader's **health, money, legal standing, safety, or c
 - When unsure whether a topic is YMYL, **treat it as YMYL** — a false positive costs nothing; a false negative ships harmful content under a lenient bar.
 
 YMYL ship threshold is higher: only ship when Trust and Expertise are clearly **good (≥75)**, not merely passing.
-
----
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>

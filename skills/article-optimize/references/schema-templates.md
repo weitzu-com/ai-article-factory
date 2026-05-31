@@ -145,6 +145,3 @@ When a single article has a visible FAQ and is also a how-to, emit one script bl
 - [ ] Every value (headline, FAQ Q&A, steps, ratings) is visible on the page.
 - [ ] Author is a named Person.
 - [ ] Optional online confirmation: `validator.schema.org` + Google Rich Results Test.
-
----
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
