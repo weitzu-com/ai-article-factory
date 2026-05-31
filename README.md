@@ -10,6 +10,8 @@ A **Claude Code Skill** that turns any material, topic, or product into **publis
 
 ---
 
+> 📖 **New here? Read the [User Manual (用户使用手册)](docs/用户使用手册.md)** — install, your first article in 5 minutes, what you (the human) do, a real worked example, and troubleshooting.
+
 ## Why (first principles)
 
 Writing a good article is actually a **standardizable assembly line**: each station has a defined input, output, and pass/fail gate — so it can be automated, while humans guard the gates.
