@@ -1,7 +1,7 @@
 ---
 name: ai-article-factory
 description: 'Use when the user wants to turn any material, topic, or product into publish-ready, illustrated articles — automated end-to-end (auto file → topic → schedule → draft → visuals → fact-check → multi-platform copy → export MD+Word), with a human only reviewing, confirming, and publishing. 文章自动化生产/自动写文章/图文并茂/SEO GEO优化/一稿多投/任意素材变文章'
-version: "2.2.0"
+version: "2.3.0"
 license: Apache-2.0
 homepage: "https://github.com/weitzu-com/ai-article-factory"
 when_to_use: "Use when the user says 写文章 / 自动写作 / 把素材变成文章 / article factory / produce content, or wants automated topic selection, scheduling, drafting, fact-checking, figures (图文并茂), and multi-platform copy (website / LinkedIn / X) where the human only reviews, confirms, and publishes."

@@ -37,7 +37,8 @@ Defaults: infer the profile (no forms), placeholder cover never blocks, website-
 bash scripts/new-article.sh <slug>            # scaffold articles/<date>-<slug>/ (slug = english-kebab-case)
 bash scripts/render-figures.sh <article-dir>  # Mermaid + matplotlib → assets/img/
 bash scripts/export.sh <article-dir> <slug>   # Markdown → .docx (images embedded)
-bash tests/harness.sh                         # 23-check stress + regression suite
+bash tests/harness.sh                         # 23-check unit stress + regression suite
+bash tests/e2e-smoke.sh                        # end-to-end pipeline gate (scaffold→figures→export→[C#])
 ```
 
 ## Tools (layered — a Markdown draft needs none)

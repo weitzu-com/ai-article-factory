@@ -118,7 +118,7 @@ ai-article-factory/
 ├── scripts/            # figlib.py · render-figures.sh · export.sh · new-article.sh
 ├── templates/          # article project template + brand reference.docx
 ├── references/         # on-demand detail: pipeline, materials, visuals, multi-platform, publishing, skills+MCP, PDCA
-├── tests/              # harness.sh — 23-check stress + regression suite
+├── tests/              # harness.sh (unit stress) + e2e-smoke.sh (end-to-end pipeline gate)
 ├── LICENSE · NOTICE    # Apache-2.0 + attribution
 ```
 
