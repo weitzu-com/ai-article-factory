@@ -13,3 +13,11 @@ __pycache__/
 **/assets/img/*.jpg
 !**/assets/img/.gitkeep
 *-final.docx
+
+# Client source materials — real standards / PDFs / specs stay local, never committed
+shared-materials/
+*.pdf
+
+# Secrets
+.env
+.env.*
